@@ -52,4 +52,12 @@ describe('User SingUp', () => {
         await expect(sut.signUp(userData)).rejects.toThrow("Parâmetro faltando username");
     });
 
+    it('should create a new user account with provided data', async function () {
+        const userData = {
+            username: 'some_username',
+            email: 'some_valid_email'
+        };
+        const {sut} = SystemUnderTest.makeSut();
+        await expect(sut.signUp(userData)).resolves.toEqual(Object.assign({id: 'some_id'}, userData));
+    });
 })
